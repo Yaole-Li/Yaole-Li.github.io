@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python学习笔记2 | 学习笔记</title><meta name="author" content="lyl"><meta name="copyright" content="lyl"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="Python程序结构1.程序由模块构成2.模块包含语句3.语句包含表达式4.表达式创建并处理对象Python核心数据类型   对象类型 字面量&#x2F;构造示例    数字 1234,3.14,3+4j,Ob111,Decimal(),Fraction()   字符串 ‘Spam’,”Bob’s”,b’a\x01c’,u’sp\xc4m’   列表 [1,[2,’three’],4,5],list(ran">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python学习笔记2">
+<meta property="og:url" content="https://yaole-li.github.io/2021/01/25/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="Python程序结构1.程序由模块构成2.模块包含语句3.语句包含表达式4.表达式创建并处理对象Python核心数据类型   对象类型 字面量&#x2F;构造示例    数字 1234,3.14,3+4j,Ob111,Decimal(),Fraction()   字符串 ‘Spam’,”Bob’s”,b’a\x01c’,u’sp\xc4m’   列表 [1,[2,’three’],4,5],list(ran">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-01-25T02:10:46.000Z">
+<meta property="article:modified_time" content="2021-01-26T10:12:55.586Z">
+<meta property="article:author" content="lyl">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://yaole-li.github.io/2021/01/25/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-01-26 18:12:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://s3.ax1x.com/2021/01/23/sToTu4.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">学习笔记</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python学习笔记2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-01-25T02:10:46.000Z" title="发表于 2021-01-25 10:10:46">2021-01-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-01-26T10:12:55.586Z" title="更新于 2021-01-26 18:12:55">2021-01-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Python程序结构"><a href="#Python程序结构" class="headerlink" title="Python程序结构"></a>Python程序结构</h1><h2 id="1-程序由模块构成"><a href="#1-程序由模块构成" class="headerlink" title="1.程序由模块构成"></a>1.程序由模块构成</h2><h2 id="2-模块包含语句"><a href="#2-模块包含语句" class="headerlink" title="2.模块包含语句"></a>2.模块包含语句</h2><h2 id="3-语句包含表达式"><a href="#3-语句包含表达式" class="headerlink" title="3.语句包含表达式"></a>3.语句包含表达式</h2><h2 id="4-表达式创建并处理对象"><a href="#4-表达式创建并处理对象" class="headerlink" title="4.表达式创建并处理对象"></a>4.表达式创建并处理对象</h2><h1 id="Python核心数据类型"><a href="#Python核心数据类型" class="headerlink" title="Python核心数据类型"></a>Python核心数据类型</h1><table>
+<thead>
+<tr>
+<th>对象类型</th>
+<th>字面量/构造示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数字</td>
+<td>1234,3.14,3+4j,Ob111,Decimal(),Fraction()</td>
+</tr>
+<tr>
+<td>字符串</td>
+<td>‘Spam’,”Bob’s”,b’a\x01c’,u’sp\xc4m’</td>
+</tr>
+<tr>
+<td>列表</td>
+<td>[1,[2,’three’],4,5],list(range(10))</td>
+</tr>
+<tr>
+<td>字典</td>
+<td>{‘food’:’spam’,’taste’:’yum’}, dict(hours=10)</td>
+</tr>
+<tr>
+<td>元组</td>
+<td>(1,’spam’,4),tuple(‘name’),namedtuple</td>
+</tr>
+<tr>
+<td>文件</td>
+<td>open(‘egg.txt’),open(r’/usr/Documents/blog’,’wb’)</td>
+</tr>
+<tr>
+<td>其他核心类型</td>
+<td>类型、None、布尔型</td>
+</tr>
+<tr>
+<td>程序单元类型</td>
+<td>函数、模块、类</td>
+</tr>
+<tr>
+<td>Python实现相关类型</td>
+<td>已编译代码、调用栈跟踪</td>
+</tr>
+<tr>
+<td>可见，Python的核心数据类型相较于C++来说更加丰富，更加便于使用，也省去了很多麻烦。</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>而且，Python中没有类型声明，运行的表达式的语法决定了创建和使用对象的类型。一旦创建好对象，就只能做此对象可以做的操作，所以虽然Python是动态类型的，但它也是强类型语言。</p>
+<h2 id="1-数字"><a href="#1-数字" class="headerlink" title="1.数字"></a>1.数字</h2><p>每类编程语言的数字大同小异。</p>
+<h2 id="2-字符串"><a href="#2-字符串" class="headerlink" title="2.字符串"></a>2.字符串</h2><p>字符串是由单字符的字符串组成的序列。</p>
+<h3 id="1-序列操作"><a href="#1-序列操作" class="headerlink" title="1.序列操作"></a>1.序列操作</h3><p>由下列零散交互解释：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">% python3</span><br><span class="line">&gt;&gt;&gt; S &#x3D; &#39;Spam&#39;</span><br><span class="line">&gt;&gt;&gt; len(S)</span><br><span class="line">4</span><br><span class="line">&gt;&gt;&gt; S[0]</span><br><span class="line">&#39;S&#39;</span><br><span class="line">&gt;&gt;&gt; S[1]</span><br><span class="line">&#39;p&#39;</span><br><span class="line">&gt;&gt;&gt; S[-1]</span><br><span class="line">&#39;m&#39;</span><br><span class="line">&gt;&gt;&gt; S[1:3]</span><br><span class="line">&#39;pa&#39;</span><br><span class="line">&gt;&gt;&gt; </span><br></pre></td></tr></table></figure>
+<p>值得一提的是最后一个分片操作，一般形式为<code>X[I,J]</code>表示取出从I到J-1的内容，在分片中，左边默认为0，右边默认为字符串长度，下面是分片的变体：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; S[1:]</span><br><span class="line">&#39;pam&#39;</span><br><span class="line">&gt;&gt;&gt; S[0:3]</span><br><span class="line">&#39;Spa&#39;</span><br><span class="line">&gt;&gt;&gt; S[:3]</span><br><span class="line">&#39;Spa&#39;</span><br><span class="line">&gt;&gt;&gt; S[:-1]</span><br><span class="line">&#39;Spa&#39;</span><br><span class="line">&gt;&gt;&gt; S[:]</span><br><span class="line">&#39;Spam&#39;</span><br><span class="line">&gt;&gt;&gt; </span><br></pre></td></tr></table></figure>
+<p>字符串的拼接与重复，更加方便了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; S</span><br><span class="line">&#39;Spam&#39;</span><br><span class="line">&gt;&gt;&gt; S + &#39;lol&#39;</span><br><span class="line">&#39;Spamlol&#39;</span><br><span class="line">&gt;&gt;&gt; S</span><br><span class="line">&#39;Spam&#39;</span><br><span class="line">&gt;&gt;&gt; S * 8</span><br><span class="line">&#39;SpamSpamSpamSpamSpamSpamSpamSpam&#39;</span><br></pre></td></tr></table></figure>
+<p>还有一件事，字符串在创建后不能够原位置改变，这是它的不可变性。</p>
+<h3 id="2-特定类型的方法"><a href="#2-特定类型的方法" class="headerlink" title="2.特定类型的方法"></a>2.特定类型的方法</h3><p>find方法，返回子字符串的偏移量，若没有找到，返回-1.</p>
+<p>replace方法对全局搜索和和替换，但由于字符串的不可变性，其原理是创建一个新的字符串作为结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; S &#x3D; &#39;string&#39;</span><br><span class="line">&gt;&gt;&gt; S.find(&#39;ing&#39;)</span><br><span class="line">3</span><br><span class="line">&gt;&gt;&gt; S.replace(&#39;ing&#39;, &#39;gni&#39;)</span><br><span class="line">&#39;strgni&#39;</span><br><span class="line">&gt;&gt;&gt; S</span><br><span class="line">&#39;string&#39;</span><br><span class="line">&gt;&gt;&gt; </span><br></pre></td></tr></table></figure>
+<p>split方法通过分隔符将字符串拆分为子字符串</p>
+<p>upper,lower大小写变换</p>
+<p>isalpha等等is开头的是测试字符串内容的</p>
+<p>rstrip是去掉字符串的空格字符的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; line &#x3D; &#39;aa,bb,ccc,dddd&#39;</span><br><span class="line">&gt;&gt;&gt; line.split(&#39;,&#39;)</span><br><span class="line">[&#39;aa&#39;, &#39;bb&#39;, &#39;ccc&#39;, &#39;dddd&#39;]</span><br><span class="line">&gt;&gt;&gt; S &#x3D; &#39;string&#39;</span><br><span class="line">&gt;&gt;&gt; S.upper()</span><br><span class="line">&#39;STRING&#39;</span><br><span class="line">&gt;&gt;&gt; S.isalpha()</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; S.islower()</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; S.isalnum()</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; line &#x3D; &#39;aaa,bb,cccc,dd\n&#39;</span><br><span class="line">&gt;&gt;&gt; line.rstrip()</span><br><span class="line">&#39;aaa,bb,cccc,dd&#39;</span><br><span class="line">&gt;&gt;&gt; line</span><br><span class="line">&#39;aaa,bb,cccc,dd\n&#39;</span><br><span class="line">&gt;&gt;&gt; line.rstrip().split(&#39;,&#39;)</span><br><span class="line">[&#39;aaa&#39;, &#39;bb&#39;, &#39;cccc&#39;, &#39;dd&#39;]</span><br></pre></td></tr></table></figure>
+<p>注意看最后一个，它在调用split()方法前调用了rstrip()方法，Python从左到右进行，每次都会为后面的方法产生临时对象。</p>
+<p>字符串还有一个叫高级替代操作，类似于C语言中的printf()括号中的东西：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; &#39;%s, lisi, and %s&#39; % (&#39;zhangsan&#39;, &#39;wangwu.&#39;)</span><br><span class="line">&#39;zhangsan, lisi, and wangwu.&#39;</span><br><span class="line">&gt;&gt;&gt; &#39;&#123;0&#125;, lisi, and &#123;1&#125;&#39;.format(&#39;zhangsan&#39;, &#39;wangwu.&#39;)</span><br><span class="line">&#39;zhangsan, lisi, and wangwu.&#39;</span><br><span class="line">&gt;&gt;&gt; &#39;&#123;&#125;, lisi, and &#123;&#125;&#39;.format(&#39;zhangsan&#39;, &#39;wangwu.&#39;)</span><br><span class="line">&#39;zhangsan, lisi, and wangwu.&#39;</span><br></pre></td></tr></table></figure>
+<p>字符串格式化还对控制数字格式很方便</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; &#39;&#123;:,.2f&#125;&#39;.format(27272783.2356)</span><br><span class="line">&#39;27,272,783.24&#39;</span><br><span class="line">&gt;&gt;&gt; &#39;%.2f | %+05d&#39; % (3.14159, -6)</span><br><span class="line">&#39;3.14 | -0006&#39;</span><br></pre></td></tr></table></figure>
+<h2 id="3-列表"><a href="#3-列表" class="headerlink" title="3.列表"></a>3.列表</h2><p>列表是一个任意类型对象的位置相关的有序集合，无固定大小。列表是可变的，对相应偏移量就可以对其相应位置赋值。下面通过交互界面演示列表功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; L &#x3D; [&#39;zhangsan&#39;, 233, 3.14] #可见，可以存不同类型</span><br><span class="line">&gt;&gt;&gt; L + [3,4,5] #等效于extend</span><br><span class="line">[&#39;zhangsan&#39;, 233, 3.14, 3, 4, 5]</span><br><span class="line">&gt;&gt;&gt; L * 2</span><br><span class="line">[&#39;zhangsan&#39;, 233, 3.14, &#39;zhangsan&#39;, 233, 3.14]</span><br><span class="line">&gt;&gt;&gt; L #不改变原列表</span><br><span class="line">[&#39;zhangsan&#39;, 233, 3.14]</span><br><span class="line">&gt;&gt;&gt; L.append(&#39;lisi&#39;)</span><br><span class="line">&gt;&gt;&gt; L</span><br><span class="line">[&#39;zhangsan&#39;, 233, 3.14, &#39;lisi&#39;]</span><br><span class="line">&gt;&gt;&gt; L.pop(2) #按偏移量删除</span><br><span class="line">3.14</span><br><span class="line">&gt;&gt;&gt; L</span><br><span class="line">[&#39;zhangsan&#39;, 233, &#39;lisi&#39;]</span><br><span class="line">&gt;&gt;&gt; L.insert(2,&#39;3.14&#39;)</span><br><span class="line">&gt;&gt;&gt; L</span><br><span class="line">[&#39;zhangsan&#39;, 233, &#39;3.14&#39;, &#39;lisi&#39;]</span><br><span class="line">&gt;&gt;&gt; L.remove(233) #按值删除</span><br><span class="line">&gt;&gt;&gt; L</span><br><span class="line">[&#39;zhangsan&#39;, &#39;3.14&#39;, &#39;lisi&#39;]</span><br><span class="line">&gt;&gt;&gt; L.extend([2,3,4])</span><br><span class="line">&gt;&gt;&gt; L</span><br><span class="line">[&#39;zhangsan&#39;, &#39;3.14&#39;, &#39;lisi&#39;, 2, 3, 4]</span><br></pre></td></tr></table></figure>
+<p>列表还可以很简单的进行排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; NUM &#x3D; [&#39;bb&#39;,&#39;ccc&#39;,&#39;aaaa&#39;] </span><br><span class="line">&gt;&gt;&gt; NUM.sort() #按首字母生序排序</span><br><span class="line">&gt;&gt;&gt; NUM</span><br><span class="line">[&#39;aaaa&#39;, &#39;bb&#39;, &#39;ccc&#39;]</span><br><span class="line">&gt;&gt;&gt; NUM.reverse() #反转字符串</span><br><span class="line">&gt;&gt;&gt; NUM</span><br><span class="line">[&#39;ccc&#39;, &#39;bb&#39;, &#39;aaaa&#39;]</span><br></pre></td></tr></table></figure>
+<p>列表支持嵌套，而且字典、列表等结构可以任意嵌套。还可以形成类似于C++中二维数组的结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; M &#x3D; [[1,2,3],</span><br><span class="line">...      [4,5,6],</span><br><span class="line">...      [7,8,9]]</span><br><span class="line">&gt;&gt;&gt; M</span><br><span class="line">[[1, 2, 3], [4, 5, 6], [7, 8, 9]]</span><br><span class="line">&gt;&gt;&gt; M[2]</span><br><span class="line">[7, 8, 9]</span><br><span class="line">&gt;&gt;&gt; M[2][2]</span><br><span class="line">9</span><br></pre></td></tr></table></figure>
+<p>下面是更高级的推导操作，效率高，使用方便。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; M &#x3D; [[1,2,3],</span><br><span class="line">...      [4,5,6],</span><br><span class="line">...      [7,8,9]]</span><br><span class="line">&gt;&gt;&gt; col2 &#x3D; [row[1] for row in M] #取出M的第二列</span><br><span class="line">&gt;&gt;&gt; col2</span><br><span class="line">[2, 5, 8]</span><br><span class="line">&gt;&gt;&gt; [row[1] + 100 for row in M] #取出的同时可以对其操作</span><br><span class="line">[102, 105, 108]</span><br><span class="line">&gt;&gt;&gt; [row[1] for row in M if row[1] % 2 &#x3D;&#x3D; 0] #for循环后还可以加判断，这里只取出偶数</span><br><span class="line">[2, 8]</span><br><span class="line">&gt;&gt;&gt; [M[i][i] for i in [0,1,2]] #这里单步处理坐标的一个硬编码列表</span><br><span class="line">[1, 5, 9]</span><br><span class="line">&gt;&gt;&gt; [c * 2 for c in &#39;zhangsan&#39;] #单步处理了一个字符串</span><br><span class="line">[&#39;zz&#39;, &#39;hh&#39;, &#39;aa&#39;, &#39;nn&#39;, &#39;gg&#39;, &#39;ss&#39;, &#39;aa&#39;, &#39;nn&#39;]</span><br></pre></td></tr></table></figure>
+<p>借用range()，能让生成列表变得更加方便</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; list(range(4)) #默认从0到I-1</span><br><span class="line">[0, 1, 2, 3]</span><br><span class="line">&gt;&gt;&gt; list(range(-6,6,2)) #从-6到6公差为2</span><br><span class="line">[-6, -4, -2, 0, 2, 4]</span><br><span class="line">&gt;&gt;&gt; [[x * 2, x * 3] for x in range(4)] #结合推导直接生成列表</span><br><span class="line">[[0, 0], [2, 3], [4, 6], [6, 9]]</span><br><span class="line">&gt;&gt;&gt; [x ** 4 for x in range(4)]</span><br><span class="line">[0, 1, 16, 81]</span><br><span class="line">&gt;&gt;&gt; [[x, x&#x2F;2, x*2] for x in range(-6,6,2) if x &gt; 0] #加判断的列表</span><br><span class="line">[[2, 1.0, 4], [4, 2.0, 8]]</span><br></pre></td></tr></table></figure>
+<h2 id="4-字典"><a href="#4-字典" class="headerlink" title="4.字典"></a>4.字典</h2><p>不是序列，而是一种映射，通过键（key）而不是相对位置来储存对象。下面是其部分初始化示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; D &#x3D; &#123;&#39;name&#39;: &#39;zhangsan&#39;, &#39;age&#39;: 22, &#39;sex&#39;: &#39;m&#39;&#125;</span><br><span class="line">&gt;&gt;&gt; D</span><br><span class="line">&#123;&#39;name&#39;: &#39;zhangsan&#39;, &#39;age&#39;: 22, &#39;sex&#39;: &#39;m&#39;&#125;</span><br><span class="line">&gt;&gt;&gt; D[&#39;name&#39;]</span><br><span class="line">&#39;zhangsan&#39;</span><br><span class="line">&gt;&gt;&gt; D[&#39;age&#39;] +&#x3D; 10</span><br><span class="line">&gt;&gt;&gt; D</span><br><span class="line">&#123;&#39;name&#39;: &#39;zhangsan&#39;, &#39;age&#39;: 32, &#39;sex&#39;: &#39;m&#39;&#125;</span><br><span class="line">&gt;&gt;&gt; zhang1 &#x3D; dict(name &#x3D; &#39;zhangsan&#39;, job &#x3D; &#39;dev&#39;, age &#x3D; 35)</span><br><span class="line">&gt;&gt;&gt; zhang1</span><br><span class="line">&#123;&#39;name&#39;: &#39;zhangsan&#39;, &#39;job&#39;: &#39;dev&#39;, &#39;age&#39;: 35&#125;</span><br><span class="line">&gt;&gt;&gt; zhang2 &#x3D; dict(zip([&#39;name&#39;, &#39;job&#39;, &#39;age&#39;], [&#39;zhangsan&#39;, &#39;dev&#39;, 35]))</span><br><span class="line">&gt;&gt;&gt; zhang2</span><br><span class="line">&#123;&#39;name&#39;: &#39;zhangsan&#39;, &#39;job&#39;: &#39;dev&#39;, &#39;age&#39;: 35&#125;</span><br></pre></td></tr></table></figure>
+<p>Python的字典也支持重访嵌套：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; rec &#x3D; &#123;&#39;name&#39;: &#123;&#39;first&#39;: &#39;zhang&#39;, &#39;last&#39;: &#39;san&#39;&#125;,</span><br><span class="line">...        &#39;job&#39;: [&#39;dev&#39;, &#39;mgr&#39;],</span><br><span class="line">...        &#39;age&#39;: 35&#125;</span><br><span class="line">&gt;&gt;&gt; rec[&#39;name&#39;]</span><br><span class="line">&#123;&#39;first&#39;: &#39;zhang&#39;, &#39;last&#39;: &#39;san&#39;&#125;</span><br><span class="line">&gt;&gt;&gt; rec[&#39;name&#39;][&#39;last&#39;]</span><br><span class="line">&#39;san&#39;</span><br><span class="line">&gt;&gt;&gt; rec[&#39;job&#39;]</span><br><span class="line">[&#39;dev&#39;, &#39;mgr&#39;]</span><br><span class="line">&gt;&gt;&gt; rec[&#39;job&#39;][-1]</span><br><span class="line">&#39;mgr&#39;</span><br><span class="line">&gt;&gt;&gt; rec[&#39;job&#39;].append(&#39;janitor&#39;)</span><br><span class="line">&gt;&gt;&gt; rec</span><br><span class="line">&#123;&#39;name&#39;: &#123;&#39;first&#39;: &#39;zhang&#39;, &#39;last&#39;: &#39;san&#39;&#125;, &#39;job&#39;: [&#39;dev&#39;, &#39;mgr&#39;, &#39;janitor&#39;], &#39;age&#39;: 35&#125;</span><br></pre></td></tr></table></figure>
+<p>if测试，可以避免访问不存在的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; D &#x3D; &#123;&#39;a&#39;:1, &#39;b&#39;:2, &#39;c&#39;:3&#125;</span><br><span class="line">&gt;&gt;&gt; D[&#39;e&#39;] &#x3D; 99</span><br><span class="line">&gt;&gt;&gt; D</span><br><span class="line">&#123;&#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 3, &#39;e&#39;: 99&#125;</span><br><span class="line">&gt;&gt;&gt; &#39;f&#39; in D</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+<p>get方法或者if/else三元表达式，都可以避免访问不存在的值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; D &#x3D; &#123;&#39;a&#39;:1, &#39;b&#39;:2, &#39;c&#39;:3&#125;</span><br><span class="line">&gt;&gt;&gt; value &#x3D; D.get(&#39;f&#39;,0)</span><br><span class="line">&gt;&gt;&gt; value</span><br><span class="line">0</span><br><span class="line">&gt;&gt;&gt; value &#x3D; D[&#39;x&#39;] if &#39;x&#39; in D else 0</span><br><span class="line">&gt;&gt;&gt; value</span><br><span class="line">0</span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">lyl</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://yaole-li.github.io/2021/01/25/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/">https://yaole-li.github.io/2021/01/25/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://Yaole-Li.github.io" target="_blank">学习笔记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/images/wechat.png" target="_blank"><img class="post-qr-code-img" src="/images/wechat.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/images/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/images/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/01/24/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python学习笔记1</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">lyl</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Yaole-Li"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">一起学习呀</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Python%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">Python程序结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%A8%8B%E5%BA%8F%E7%94%B1%E6%A8%A1%E5%9D%97%E6%9E%84%E6%88%90"><span class="toc-number">1.1.</span> <span class="toc-text">1.程序由模块构成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%A8%A1%E5%9D%97%E5%8C%85%E5%90%AB%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.2.</span> <span class="toc-text">2.模块包含语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%AF%AD%E5%8F%A5%E5%8C%85%E5%90%AB%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text">3.语句包含表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%9B%E5%BB%BA%E5%B9%B6%E5%A4%84%E7%90%86%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.4.</span> <span class="toc-text">4.表达式创建并处理对象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Python%E6%A0%B8%E5%BF%83%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">Python核心数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%95%B0%E5%AD%97"><span class="toc-number">2.1.</span> <span class="toc-text">1.数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.2.</span> <span class="toc-text">2.字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BA%8F%E5%88%97%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.1.</span> <span class="toc-text">1.序列操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%89%B9%E5%AE%9A%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.特定类型的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%97%E8%A1%A8"><span class="toc-number">2.3.</span> <span class="toc-text">3.列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%AD%97%E5%85%B8"><span class="toc-number">2.4.</span> <span class="toc-text">4.字典</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/01/25/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/" title="Python学习笔记2">Python学习笔记2</a><time datetime="2021-01-25T02:10:46.000Z" title="发表于 2021-01-25 10:10:46">2021-01-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/01/24/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/" title="Python学习笔记1">Python学习笔记1</a><time datetime="2021-01-24T02:52:55.000Z" title="发表于 2021-01-24 10:52:55">2021-01-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/01/23/EffectiveC-%E7%AC%94%E8%AE%B01/" title="EffectiveC++笔记1">EffectiveC++笔记1</a><time datetime="2021-01-23T08:59:16.000Z" title="发表于 2021-01-23 16:59:16">2021-01-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/01/23/firstPage-md/" title="Hexo笔记">Hexo笔记</a><time datetime="2021-01-23T03:04:17.000Z" title="发表于 2021-01-23 11:04:17">2021-01-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/01/23/hello-world/" title="Hello World">Hello World</a><time datetime="2021-01-23T02:21:41.788Z" title="发表于 2021-01-23 10:21:41">2021-01-23</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By lyl</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
